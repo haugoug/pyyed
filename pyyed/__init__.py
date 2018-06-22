@@ -76,6 +76,10 @@ class Group:
         self.nodes[node_name] = Node(node_name, **kwargs)
         self.parent_graph.nodes_in_groups.append(node_name)
 
+    def add_group(self, group_id, **kwargs):
+        self.nodes[group_id] = Group(group_id, self.parent_graph, **kwargs)
+        return self.nodes[group_id]
+
     def convert(self):
         node = ET.Element("node", id=self.group_id)
         node.set("yfiles.foldertype", "group")
